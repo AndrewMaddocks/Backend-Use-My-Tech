@@ -15,7 +15,9 @@ server.use("/api/owner", authOwnerRouter);
 server.use("/api/renter", authRenterRouter);
 
 server.get("/", (req, res) => {
-  res.send("It's alive!");
+  res.send(
+    "It's alive! If you want to check the endpoints type them in the Url above^!"
+  );
 });
 
 module.exports = server;
