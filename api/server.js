@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const authOwnerRouter = require("../auth/authOwnerRouter");
 const authRenterRouter = require("../auth/authRenterRouter");
+const techRouter = require("../tech/techRouter.js");
 
 const server = express();
 
@@ -13,11 +14,10 @@ server.use(cors());
 
 server.use("/api/owner", authOwnerRouter);
 server.use("/api/renter", authRenterRouter);
+server.use("/api/tech", techRouter);
 
 server.get("/", (req, res) => {
-  res.send(
-    "It's alive! If you want to check the endpoints type them in the Url above^!"
-  );
+  res.send("It's alive!");
 });
 
 module.exports = server;

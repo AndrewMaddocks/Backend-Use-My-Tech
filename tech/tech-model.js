@@ -1,0 +1,58 @@
+const db = require("../data/dbConfig.js");
+module.exports = {
+  find,
+  findById,
+  add,
+  findTechForOwner,
+  update,
+  remove
+};
+function find() {
+  return db("tech");
+}
+function findById(id) {
+  return db("tech")
+    .where({ id })
+    .first();
+}
+function add(techItem) {
+  return db("tech")
+    .insert(techItem, "id")
+    .then(ids => {
+      const [id] = ids;
+
+      return findById(id);
+    });
+}
+function findTechForOwner(id) {
+  // select o.id as owner_id,o.username,  t.name, t.description, t.rented
+  // from tech as t
+  // join owner as o
+  // on t.owner_id =
+  // where o.id = 2;
+  return db("tech as t")
+    .select(
+      "o.id as owner_id",
+      "o.username",
+      "t.name",
+      "t.description",
+      "t.rented"
+    )
+    .join("owner as o", "t.owner_id", "o.id")
+    .where("o.id", id);
+}
+
+function update(changes, id) {
+  return db("tech")
+    .where({ id })
+    .update(changes)
+    .then(() => {
+      return findById(id);
+    });
+}
+
+function remove(id) {
+  return db("tech")
+    .where("id", id)
+    .del();
+}
