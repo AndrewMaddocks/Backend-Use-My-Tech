@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 });
 
 // make a Get request for a owner to get a list of just their tech items ✅
-router.get("/:id", (req, res) => {
+router.get("/all/:id", (req, res) => {
   const { id } = req.params;
 
   Tech.findTechForOwner(id)
@@ -48,6 +48,25 @@ router.get("/:id", (req, res) => {
       res.status(500).json({ message: "Failed to get tech" });
     });
 });
+// this will return a tech item with a specific id. ✅
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  Tech.findById(id)
+    .then(tech => {
+      if (tech) {
+        res.json(tech);
+      } else {
+        res
+          .status(404)
+          .json({ message: "Could not find tech item with given id." });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Failed to get tech item" });
+    });
+});
+
 //Put request to be able to update a owners tech ✅
 
 router.put("/:id", (req, res) => {
