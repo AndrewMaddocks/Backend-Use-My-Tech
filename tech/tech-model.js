@@ -4,6 +4,7 @@ module.exports = {
   findById,
   add,
   findTechForOwner,
+  findTechForRenter,
   update,
   remove
 };
@@ -32,14 +33,14 @@ function findTechForOwner(id) {
   // where o.id = 2;
   return db("tech as t")
     .select(
-      "o.id as owner_id",
-      "o.username",
+      "u.id as users id",
+      "u.username",
       "t.name",
       "t.description",
       "t.rented"
     )
-    .join("owner as o", "t.owner_id", "o.id")
-    .where("o.id", id);
+    .join("user as u", "t.owner_id", "u.id")
+    .where("u.id", id);
 }
 
 function update(changes, id) {
@@ -55,4 +56,20 @@ function remove(id) {
   return db("tech")
     .where("id", id)
     .del();
+}
+
+function findTechForRenter(id) {
+  // select u.username,t.name, t.description, rt.returned
+  // from tech as t
+  // join rented_tech as rt
+  // on rt.tech_id = t.id
+  // join user as u
+  // on u.id = rt.renter_id
+  // where u.id = 2;
+
+  return db("tech as t")
+    .select("u.username", "t.name", "t.description", "rt.returned")
+    .join("rented_tech as rt", "rt.tech_id", "t.id")
+    .join("user as u ", "u.id", "rt.renter_id")
+    .where("u.id", id);
 }

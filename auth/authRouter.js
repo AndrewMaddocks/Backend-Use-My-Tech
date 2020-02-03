@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const Users = require("../renter/renter-model.js");
+const Users = require("../user/user-model");
 
 // for endpoints beginning with /api/auth
 router.post("/register", (req, res) => {

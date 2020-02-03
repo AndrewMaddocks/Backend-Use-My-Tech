@@ -14,7 +14,7 @@ exports.seed = function(knex) {
         {
           name: "fog machine",
           description: "black with a red lid",
-          rented: false,
+          rented: true,
           owner_id: 1
         },
         {
