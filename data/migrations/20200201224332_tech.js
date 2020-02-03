@@ -4,13 +4,14 @@ exports.up = function(knex) {
       tbl.increments();
       tbl.string("name").notNullable();
       tbl.string("description");
+      tbl.string("price");
       tbl.string("rented").defaultTo(false);
       tbl
         .string("owner_id")
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("owner")
+        .inTable("user")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
     })
@@ -22,7 +23,7 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("renter")
+        .inTable("user")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
       tbl

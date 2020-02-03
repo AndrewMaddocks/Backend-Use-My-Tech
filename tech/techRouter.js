@@ -105,5 +105,23 @@ router.delete("/:id", (req, res) => {
       res.status(500).json({ message: "Failed to delete tech item" });
     });
 });
+// GET request for a renter to see the items they are renting.✅
+router.get("/rented/:id", (req, res) => {
+  const { id } = req.params;
+
+  Tech.findTechForRenter(id)
+    .then(item => {
+      if (item.length) {
+        res.json(item);
+      } else {
+        res.status(404).json({
+          message: "Could not find the Tech"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Failed to get tech" });
+    });
+});
 
 module.exports = router;
