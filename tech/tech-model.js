@@ -36,6 +36,7 @@ function findTechForOwner(id) {
       "u.id as users id",
       "u.username",
       "t.name",
+      "t.image",
       "t.description",
       "t.rented"
     )
@@ -68,7 +69,7 @@ function findTechForRenter(id) {
   // where u.id = 2;
 
   return db("tech as t")
-    .select("u.username", "t.name", "t.description", "rt.returned")
+    .select("u.username", "t.name", "t.image", "t.description", "rt.returned")
     .join("rented_tech as rt", "rt.tech_id", "t.id")
     .join("user as u ", "u.id", "rt.renter_id")
     .where("u.id", id);
