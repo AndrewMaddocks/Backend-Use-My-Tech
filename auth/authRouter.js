@@ -12,7 +12,11 @@ router.post("/register", (req, res) => {
 
   Users.add(user)
     .then(saved => {
-      res.status(201).json(saved);
+      const token = signToken(user);
+      res.status(201).json({
+        token,
+        saved
+      });
     })
     .catch(error => {
       res.status(500).json(error);
@@ -28,10 +32,11 @@ router.post("/login", (req, res) => {
       if (user && bcrypt.compareSync(password, user.password)) {
         //sign token
         const token = signToken(user);
-
+        const id = user.id;
         //send the token
 
         res.status(200).json({
+          id,
           token,
           message: `Welcome ${user.username}!`
         });
