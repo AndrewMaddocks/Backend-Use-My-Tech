@@ -45,7 +45,8 @@ router.post("/login", (req, res) => {
 });
 function signToken(user) {
   const payload = {
-    department: user.department // this will come from the database
+    subject: user.id,
+    username: user.username
   };
 
   const secret = process.env.JWT_SECRET || "it is secret, is it safe?";

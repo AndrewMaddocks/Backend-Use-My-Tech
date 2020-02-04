@@ -1,9 +1,9 @@
 ## Backend-Use-My-Tech
 
-## Owner
+## User
 
-- Admin (username:owner password:owner)
-  POST - https://use-my-tech.herokuapp.com/api/owner/register
+- Admin (username:user password:user)
+  POST - https://use-my-tech.herokuapp.com/api/user/register
   // owner register
 - EXAMPLE DATA
   {
@@ -12,7 +12,7 @@
   "location": "utah"
   }
 
-POST - https://use-my-tech.herokuapp.com/api/owner/login
+POST - https://use-my-tech.herokuapp.com/api/user/login
 //owner login
 
 - EXAMPLE DATA
@@ -72,29 +72,6 @@ PUT - https://use-my-tech.herokuapp.com/api/tech/:id
 DELETE - https://use-my-tech.herokuapp.com/api/tech/:id
 //this will delete a tech item
 
-## Renter
-
-- Admin (username:renter password:renter)
-
-POST - https://use-my-tech.herokuapp.com/api/renter/register
-//renter register
-
-- EXAMPLE DATA
-  {
-  "username": "jake",
-  "password": "meyers"
-  }
-
-POST - https://use-my-tech.herokuapp.com/api/renter/login
-//renter login
-
-- EXAMPLE DATA
-  {
-  "username": "jake",
-  "password": "meyers"
-  }
-  (a token will be returned here)
-
 GET - https://use-my-tech.herokuapp.com/api/tech
 //will display a list of all the tech items from owners for renters to see.
 [
@@ -111,5 +88,21 @@ GET - https://use-my-tech.herokuapp.com/api/tech
 "description": "black ",
 "rented": "false",
 "owner_id": "3"
+}
+]
+GET - https://use-my-tech.herokuapp.com/api/tech/rented/:id
+// will give a renter a list of all the items they are renting.
+[
+{
+"username": "user",
+"name": "labtop",
+"description": "macbook pro",
+"returned": "0"
+},
+{
+"username": "user",
+"name": "fog machine",
+"description": "black with a red lid",
+"returned": "0"
 }
 ]
