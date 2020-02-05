@@ -33,7 +33,7 @@ function findTechForOwner(id) {
   // where o.id = 2;
   return db("tech as t")
     .select(
-      "u.id as users id",
+      "u.id ",
       "u.username",
       "t.name",
       "t.image",

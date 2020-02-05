@@ -8,6 +8,11 @@ exports.up = function(knex) {
       .unique();
     tbl.string("password", 128).notNullable();
     tbl.string("location", 128);
+    tbl
+      .string("user_image")
+      .defaultTo(
+        "https://www.tvovermind.com/wp-content/uploads/2018/06/Napoleon-Dynamite-750x422.jpg"
+      );
   });
 };
 
