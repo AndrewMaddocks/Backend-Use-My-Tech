@@ -8,6 +8,7 @@ exports.up = function(knex) {
       .unique();
     tbl.string("password", 128).notNullable();
     tbl.string("location", 128);
+
     tbl
       .string("user_image")
       .defaultTo(
@@ -16,6 +17,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function(knex) {
   return knex.schema.dropTableIfExists("user");
 };
