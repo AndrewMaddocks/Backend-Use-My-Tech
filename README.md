@@ -23,6 +23,12 @@ POST - https://use-my-tech.herokuapp.com/api/user/login
 
 (a token will be returned here)
 
+GET - https://use-my-tech.herokuapp.com/api/user
+//to get all users
+
+GET - https://use-my-tech.herokuapp.com/api/user/:id
+//to get a user by id
+
 # Tech
 
 POST - https://use-my-tech.herokuapp.com/api/tech
